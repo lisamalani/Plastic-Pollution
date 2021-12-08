@@ -18,9 +18,7 @@ def app():
         banner = "images/banner.png"
         st.image(banner)
 
-        # >>> How much plastic does the world produce? <<<
-        st.markdown("<h4><b>How much plastic does the world produce?</b></h4>", 
-                        unsafe_allow_html=True)    
+        # >>> How much plastic does the world produce? <<<  
         st.markdown("<h4><b>How much plastic does the world produce?</b></h4>", 
                         unsafe_allow_html=True)   
         st.markdown('''<b>How much plastic has the world produced cumulatively?</b> The
