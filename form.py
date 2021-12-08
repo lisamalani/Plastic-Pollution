@@ -28,7 +28,7 @@ def _google_creds_as_file():
 
 def read_gsheet():
     creds_file = _google_creds_as_file()
-    gc = pygsheets.authorize(client_secret =creds_file) #'client_secret_359875570109-s185gd60vf2esfiq27v9jd8keb7sts89.apps.googleusercontent.com.json')
+    gc = pygsheets.authorize(service_file=creds_file) #'client_secret_359875570109-s185gd60vf2esfiq27v9jd8keb7sts89.apps.googleusercontent.com.json')
     sh = gc.open_by_key(st.secrets["private_gsheets_key"])
     wk1 = sh[0]
     data_df = pd.DataFrame(wk1.get_all_records())
