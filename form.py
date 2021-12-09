@@ -46,7 +46,7 @@ def data_viz():
     st.markdown("<h5>Results:</h5>",unsafe_allow_html=True)  
     _, data_df = read_gsheet()
 
-    # AGE
+        # AGE
     age_groups = ['10-18', '19-27', '28-36', '37-45', '46-54', '54+']
 
     age_10_df = data_df[data_df["Age Group"] == "10-18"]
@@ -62,8 +62,8 @@ def data_viz():
             len(age_46_df),
             len(age_54_df)]
     # Age
-    data_age = pd.DataFrame(age_len, age_groups)
-
+    data_ages = pd.DataFrame(age_len, age_groups)
+    data_age = pd.DataFrame({'Age_response':age_len, 'Age_Group':age_groups})
 
     # REGION    
     regions = ['Asia', 'Africa', 'Australia', 'Europe', 'North America', 'South America']
@@ -81,7 +81,8 @@ def data_viz():
             len(na_df),
             len(sa_df)]
     # Region
-    data_region = pd.DataFrame(regions_len, regions)
+    data_regions = pd.DataFrame(regions_len, regions)
+    data_region = pd.DataFrame({'Regions_responses': regions_len, "Region":regions})
 
 
     # Recycle
@@ -101,17 +102,33 @@ def data_viz():
             len(n5_df)]
 
     # Recycle_data
-    data_recycle = pd.DataFrame(val, names)
+    data_recycles = pd.DataFrame(val, names)
+    data_recycle = pd.DataFrame({'Option': names, "Response_count":val})
 
     # Plot data
     st.markdown('''<h5><b>Age Groups:</b></h5>''',unsafe_allow_html=True)
-    st.bar_chart(data_age)
+    # st.bar_chart(data_age)
+    c1 = alt.Chart(data_age).mark_bar().encode(
+    y='Age_Group', x='Age_response', color='Age_response', tooltip=['Age_Group', 'Age_response'])
+    st.altair_chart(c1, use_container_width=True)
+
+    st.image(banner)
 
     st.markdown('''<h5><b>Region:</b></h5>''',unsafe_allow_html=True)
-    st.bar_chart(data_region)
+    # st.bar_chart(data_regions)
+    c2 = alt.Chart(data_region).mark_bar().encode(
+    x='Regions_responses', y='Region', color='Regions_responses', tooltip=['Region', 'Regions_responses'])
+    st.altair_chart(c2, use_container_width=True)
+
+    st.image(banner)
 
     st.markdown('''<h5><b>Purchase of plastic drinks bottles</b></h5>''',unsafe_allow_html=True)
-    st.bar_chart(data_recycle)
+    # st.bar_chart(data_recycles)
+    c3 = alt.Chart(data_recycle).mark_bar().encode(
+    x='Response_count', y='Option', color='Response_count', opacity=opacity, tooltip=['Option', 'Response_count'])
+    st.altair_chart(c3, use_container_width=True)
+
+    st.image(banner)
 
 
 def submit_data(age_group, region, recycle01, recycle02, recycle03, recycle04):
