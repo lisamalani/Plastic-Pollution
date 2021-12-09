@@ -11,16 +11,28 @@ def app():
         the oceans is also increasing, especially in the areas of the world where waste 
         management practices are not keeping up with the rapid development.
         There is however a lack of information on how much plastic debris finds its 
-        way to the oceans and how much of it there already is in the oceans. In order to 
-        identify the information needs and to explore what is already known and being done 
-        in the world.<br><br>''', unsafe_allow_html=True)
+        way to the oceans and how much of it there already is in the oceans. To understand the 
+        magnitude of input of plastics to the natural environment and the world’s oceans, we must 
+        understand various elements of the plastic production, distribution, and waste management 
+        chain. This is crucial, not only in understanding the scale of the problem but in 
+        implementing the most effective interventions for reduction. <br>
+        The data and visualizations which follow in this entry provide this overview step-by-step.
+        <br><br>''', unsafe_allow_html=True)
 
         banner = "images/banner.png"
         st.image(banner)
 
         # >>> How much plastic does the world produce? <<<  
         st.markdown("<h4><b>How much plastic does the world produce?</b></h4>", 
-                        unsafe_allow_html=True)   
+                        unsafe_allow_html=True)
+        st.markdown('''In 1950 the world produced only 2 million tonnes per year. 
+        Since then, annual production has increased nearly 200-fold, reaching 
+        381 million tonnes in 2015. For context, this is roughly equivalent to 
+        the mass of two-thirds of the world population.3
+        The short downturn in annual production in 2009 and 2010 was predominantly 
+        the result of the 2008 global financial crisis — a similar dent is seen 
+        across several metrics of resource production and consumption, including energy.''', 
+                        unsafe_allow_html=True)
         st.markdown('''<b>How much plastic has the world produced cumulatively?</b> The
         chart shows that by 2015, the world had produced <b>7.8 billion tonnes</b> of 
         plastic — more than one tonne of plastic for every person alive today.''', 
