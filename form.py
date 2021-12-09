@@ -122,7 +122,7 @@ def data_viz():
     st.markdown('''<h5><b>Purchase of plastic drinks bottles</b></h5>''',unsafe_allow_html=True)
     # st.bar_chart(data_recycles)
     c3 = alt.Chart(data_recycle).mark_bar().encode(
-    x='Response_count', y='Option', color='Response_count', opacity=opacity, tooltip=['Option', 'Response_count'])
+    x='Response_count', y='Option', color='Response_count', tooltip=['Option', 'Response_count'])
     st.altair_chart(c3, use_container_width=True)
 
     st.image(banner)
