@@ -2,9 +2,7 @@ import streamlit as st
 import pygsheets
 import pandas as pd
 import json
-import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.express as px
+import altair as alt
 
 banner = "images/banner.png"
 def _google_creds_as_file():
@@ -28,7 +26,7 @@ def _google_creds_as_file():
 
 def read_gsheet():
     creds_file = _google_creds_as_file()
-    gc = pygsheets.authorize(service_file=creds_file) #'client_secret_359875570109-s185gd60vf2esfiq27v9jd8keb7sts89.apps.googleusercontent.com.json')
+    gc = pygsheets.authorize(service_file =creds_file) #'client_secret_359875570109-s185gd60vf2esfiq27v9jd8keb7sts89.apps.googleusercontent.com.json')
     sh = gc.open_by_key(st.secrets["private_gsheets_key"])
     wk1 = sh[0]
     data_df = pd.DataFrame(wk1.get_all_records())
@@ -42,11 +40,10 @@ def write_gsheet(response):
 
 def data_viz():
     st.image(banner)
-    st.markdown("<br><br><br>",unsafe_allow_html=True)  
-    st.markdown("<h5>Results:</h5>",unsafe_allow_html=True)  
+    st.markdown("<br>",unsafe_allow_html=True)  
     _, data_df = read_gsheet()
 
-        # AGE
+    # AGE
     age_groups = ['10-18', '19-27', '28-36', '37-45', '46-54', '54+']
 
     age_10_df = data_df[data_df["Age Group"] == "10-18"]
@@ -131,6 +128,7 @@ def data_viz():
     st.image(banner)
 
 
+
 def submit_data(age_group, region, recycle01, recycle02, recycle03, recycle04):
     write_gsheet([age_group, region, recycle01, recycle02, recycle03, recycle04])
 
@@ -173,7 +171,7 @@ def app():
     if st.button('Submit'):
         submit_data(age_group, region, recycle01, recycle02, recycle03, recycle04)
 
-    if st.button('View the result anyway!'):
+    if st.button('Results'):
         data_viz()
 
 if __name__ == "__main__":
